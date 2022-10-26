@@ -1,5 +1,11 @@
 <template>
-  <div class="memo">
-    <h1>This is an Memo page</h1>
-  </div>
+  <MemoForm />
 </template>
+
+<script>
+import MemoForm from '@/components/MemoForm.vue';
+export default {
+  name: 'MemoView',
+  components: { MemoForm },
+};
+</script>
