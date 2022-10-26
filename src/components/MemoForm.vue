@@ -2,7 +2,10 @@
   <div class="new">
     <div><input type="text" v-model="title" /></div>
     <div><textarea v-model="content"></textarea></div>
-    <div class="center"><button @click="save">保存</button></div>
+    <div class="center">
+      <button @click="save">保存</button
+      ><button v-if="memo.id" @click="remove">削除</button>
+    </div>
   </div>
 </template>
 
@@ -28,6 +31,11 @@ export default {
 
       //method commit -> mutations
       this.$store.commit('save', memo);
+      //rootにリダイレクト
+      this.$router.push('/');
+    },
+    remove() {
+      this.$store.commit('delete', this.memo.id);
       //rootにリダイレクト
       this.$router.push('/');
     },

@@ -30,6 +30,10 @@ export default createStore({
         state.memos.unshift(newMemo);
       }
     },
+    delete(state, id) {
+      //指定したidを除くようにfilterし配列を更新
+      state.memos = state.memos.filter((memo) => memo.id !== id);
+    },
   },
   actions: {},
   modules: {},
