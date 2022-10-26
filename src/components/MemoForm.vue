@@ -9,11 +9,11 @@
 <script>
 export default {
   name: 'MemoForm',
-  //v-model ->双方向バインド
+  props: ['memo'],
   data() {
     return {
-      title: '',
-      content: '',
+      title: this.memo.title,
+      content: this.memo.content,
     };
   },
   methods: {
@@ -23,6 +23,9 @@ export default {
         title: this.title,
         content: this.content,
       };
+      //edit時はidで判別
+      if (this.memo.id) memo.id = this.memo.id;
+
       //method commit -> mutations
       this.$store.commit('save', memo);
       //rootにリダイレクト

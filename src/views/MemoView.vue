@@ -1,5 +1,6 @@
 <template>
-  <MemoForm />
+  <!-- propsを定義したため、新規作成では空の値を渡す -->
+  <MemoForm memo="" />
 </template>
 
 <script>

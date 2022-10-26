@@ -1,7 +1,8 @@
 <template>
   <nav>
     <router-link to="/">Top</router-link> |
-    <router-link to="/memo">Memo</router-link>
+    <router-link to="/memo">Memo</router-link> |
+    <router-link to="/edit">Edit</router-link>
   </nav>
   <router-view />
 </template>

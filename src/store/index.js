@@ -6,19 +6,29 @@ export default createStore({
     memos: [],
   },
   getters: {
+    getMemosLength: (state) => {
+      return state.memos.length;
+    },
     getMemoList: (state) => {
       return state.memos;
     },
-    getMemosLength: (state) => {
-      return state.memos.length;
+    getMemoById: (state) => (id) => {
+      return state.memos.find((memo) => (memo.id = id));
     },
   },
   mutations: {
     save(state, newMemo) {
-      //countをidで保持
-      newMemo.id = ++state.count;
-      //配列に追加
-      state.memos.unshift(newMemo);
+      //edit
+      if (newMemo.id) {
+        let editMemoState = state.memos.find((memo) => memo.id === newMemo.id);
+        editMemoState.title = newMemo.title;
+        editMemoState.content = newMemo.content;
+      } else {
+        //countをidで保持
+        newMemo.id = ++state.count;
+        //配列に追加
+        state.memos.unshift(newMemo);
+      }
     },
   },
   actions: {},
