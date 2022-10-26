@@ -1,4 +1,10 @@
 import { createStore } from 'vuex';
+import { VuexPersistence } from 'vuex-persist';
+
+//localstrageに保存
+const vuexPersist = new VuexPersistence({
+  storage: localStorage,
+});
 
 export default createStore({
   state: {
@@ -17,8 +23,11 @@ export default createStore({
     },
   },
   mutations: {
+    //localStorage state保持
+    RESTORE_MUTATION: vuexPersist.RESTORE_MUTATION,
+    //保存
     save(state, newMemo) {
-      //edit
+      //編集
       if (newMemo.id) {
         let editMemoState = state.memos.find((memo) => memo.id === newMemo.id);
         editMemoState.title = newMemo.title;
@@ -37,4 +46,5 @@ export default createStore({
   },
   actions: {},
   modules: {},
+  plugins: [vuexPersist.plugin],
 });
